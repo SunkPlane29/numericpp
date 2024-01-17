@@ -93,3 +93,35 @@ std::vector<double> getpoints(int n) {
 
     return roots;
 }
+
+double LegendrePolynDeriv(int n, double x) {
+    int imax = floor(n/2.0);
+    if (n % 2 == 0) {
+        imax -= 1;
+    }
+
+    double sum = 0.0;
+
+    for (int k = 0; k <= imax; k++) {
+        sum += pow(-1.0, k)*bin(n, k)*bin(2*n - 2*k, n)*(n - 2*k)*pow(x, n - 2*k - 1);
+    }
+
+    return sum/pow(2.0, n);
+}
+
+std::function<double(double)> LegendrePolynDeriv(int n) {
+    return [n](double x) {return LegendrePolynDeriv(n, x);};
+}
+
+double getweight(int n, double x) {
+    return 2.0/((1.0 - pow(x, 2.0))*pow(LegendrePolynDeriv(n, x), 2.0));
+}
+
+std::vector<double> getweights(std::vector<double> points, int n) {
+    std::vector<double> weights(points.size());
+    for (int i = 0; i < points.size(); i++) {
+        weights[i] = getweight(n, points[i]);
+    }
+
+    return weights;
+}
