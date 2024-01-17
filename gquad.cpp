@@ -7,8 +7,8 @@
 #include "util.h"
 #include "root.h"
 
-double adapt(double xi, std::function<double(double)> f, double a, double b) {
-    return f(((b - a)/2.0)*xi + ((a + b)/2.0))*((b - a)/2.0);
+std::function<double(double)> adapt(std::function<double(double)> f, double a, double b) {
+    return [f, a, b](double xi) {return f((b - a)*xi/2.0 + (b + a)/2.0)*((b - a)/2.0);};
 }
 
 #include <stdexcept>
@@ -124,4 +124,25 @@ std::vector<double> getweights(std::vector<double> points, int n) {
     }
 
     return weights;
+}
+
+double quadsum(std::function<double(double)> f, std::vector<double> points, 
+        std::vector<double> weights) {
+    double sum = 0.0;
+    for (int i = 0; i < points.size(); i++) {
+        sum += weights[i]*f(points[i]);
+    }
+
+    return sum;
+}
+
+double gquad(std::function<double(double)> f, double a, double b, int n) {
+    std::vector<double> points = getpoints(n);
+    std::vector<double> weights = getweights(points, n);
+
+    if (a == -1.0 && b == 1.0) {
+        return quadsum(f, points, weights);
+    } else {
+        return quadsum(adapt(f, a, b), points, weights);
+    }
 }

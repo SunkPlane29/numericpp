@@ -17,4 +17,6 @@ std::function<double(double)> LegendrePolynDeriv(int);
 double getweight(int, double);
 std::vector<double> getweights(std::vector<double>, int);
 
+double gquad(std::function<double(double)>, double, double, int);
+
 #endif

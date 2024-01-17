@@ -2,14 +2,14 @@
 
 #include <iostream>
 #include <vector>
+#include <cmath>
 
 int main() {
     // overflow for n > 32
     int n = 5;
-    std::vector<double> points = getpoints(n);
-    std::vector<double> weights = getweights(points, n);
+    auto f = [](double x) {return pow(x, 2.0);};
+    double a = 3.0;
+    double b = 45.0;
 
-    for (int i = 0; i < points.size(); i++) {
-        std::cout << "x_i = " << points[i] << ", w_i = " << weights[i] << '\n';
-    } 
+    std::cout << "Integral value: " << gquad(f, a, b, n) << '\n';
 }
