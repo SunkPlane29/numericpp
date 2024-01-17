@@ -1,6 +1,10 @@
 #ifndef GQUAD_H
 #define GQUAD_H
 
-double adapt(double(double), double, double);
+#include <functional>
+
+double adapt(double, std::function<double(double,double)>, double, double);
+
+double LegendrePolyn(int, double);
 
 #endif
