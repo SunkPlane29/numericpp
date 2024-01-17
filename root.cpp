@@ -1,3 +1,7 @@
+/*
+The code in this file will contain various function that are useful for
+finding roots of functions and systems of equations.
+*/
 #include "root.h"
 
 #include <functional>
@@ -16,6 +20,11 @@ bool signchange(std::function<double(double)> f, double a, double b) {
     } 
 }
 
+// bisectionrootfind finds the root of a function f that must be guaranteed to have
+// a change of sign in the interval [a, b] (otherwise returns a noroot value).
+// It uses a method of bisection, that is a very stable method that does not rely
+// on the derivative of a function and a good initial guess, although it has it's
+// drawbacks, such as slow convergence.
 double bisectionrootfind(std::function<double(double)> f, double a, double b, 
         double eps, int maxiter) {
 
@@ -40,6 +49,8 @@ double bisectionrootfind(std::function<double(double)> f, double a, double b,
     return c;
 }
 
+// bisectionrootfindall uses the bisection root finding method above, but subdivides
+// the interval in order to find multiple (or all) roots of the function f.
 std::vector<double> bisectionrootfindall(std::function<double(double)> f,
         double a, double b, int subintervals, double eps, int maxiter, 
         int minroots) {

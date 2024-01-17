@@ -1,3 +1,7 @@
+/*
+The code in this file will contain various utility function such as binomial
+coefficient calculation or data file outputting.
+*/
 #include "util.h"
 
 #include <bits/stdc++.h>
@@ -6,6 +10,8 @@
 
 long min(long a, long b) {return a < b ? a : b;}
 
+// Binomial coefficient calculation from 
+// https://www.geeksforgeeks.org/space-and-time-efficient-binomial-coefficient/
 unsigned long bin(int n, int k) {
     unsigned long C[k + 1];
     memset(C, 0, sizeof(C));
@@ -36,6 +42,8 @@ bool samesize(std::vector<std::vector<double>> data) {
     return true;
 }
 
+// writedata each vector in data as a column in a data file that will be a delimited file
+// with the delimiter being a space 
 void writedata(std::string filename, std::vector<std::vector<double>> data, int precision) {
     if (!samesize(data)) {
         std::cout << "Data vectors are not the same size\n";
@@ -55,6 +63,7 @@ void writedata(std::string filename, std::vector<std::vector<double>> data, int 
     file.close();
 }
 
+// linspace returns a vector of n equally spaced points between a and b
 std::vector<double> linspace(double a, double b, int n) {
     std::vector<double> x(n);
     double dx = (b - a)/(n - 1);
