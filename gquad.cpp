@@ -20,3 +20,7 @@ double LegendrePolyn(int n, double x) {
 
     return sum/pow(2.0, n);
 }
+
+std::function<double(double)> LegendrePolyn(int n) {
+    return [n](double x) {return LegendrePolyn(n, x);};
+}

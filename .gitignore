@@ -30,3 +30,21 @@
 *.exe
 *.out
 *.app
+
+# Data files
+*.txt
+*.dat
+*.csv
+
+# Plot files
+*.pdf
+*.png
+*.jpg
+*.jpeg
+*.gif
+
+# Gnuplot templates
+*.gp
+
+# VSCode
+.vscode

@@ -6,5 +6,6 @@
 double adapt(double, std::function<double(double,double)>, double, double);
 
 double LegendrePolyn(int, double);
+std::function<double(double)> LegendrePolyn(int);
 
 #endif
