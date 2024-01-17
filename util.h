@@ -5,7 +5,7 @@
 #include <string>
 #include <functional>
 
-long bin(int, int);
+unsigned long bin(int, int);
 double bin(double, double);
 void writedata(std::string, std::vector<std::vector<double>>, int precision=8);
 

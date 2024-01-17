@@ -8,12 +8,10 @@
 
 int main() {
     // overflow for n > 32
-    int nx = 100;
-    std::vector<double> x = linspace(-1.0, 1.0, nx);
-    std::vector<double> y(x.size());
+    int n = 5;
+    std::vector<double> roots =  getpoints(n);
 
-    for (int i = 0; i <= 5; i++) {
-        y = LegendrePolyn(i)%x;
-        writedata("legendre" + std::to_string(i) + ".dat", {x, y}, 8);
+    for (int i = 0; i < roots.size(); i++) {
+        std::cout << "Root " << i << ": " << roots[i] << "\n";
     }
 }

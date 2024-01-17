@@ -3,6 +3,7 @@
 #include <functional>
 #include <vector>
 #include <iostream>
+#include <cmath>
 
 bool signchange(std::function<double(double)> f, double a, double b) {
     if (f(a)*f(b) < 0.0) {
@@ -23,10 +24,7 @@ double bisectionrootfind(std::function<double(double)> f, double a, double b,
     double c = (a + b)/2.0;
     int i = 0;
 
-    // print loop conditions
-    std::cout << abs(f(c)) << " > " << eps << " && " << i << " < " << maxiter << '\n';
-
-    while (abs(f(c)) > eps && i < maxiter) {
+    while (fabs(f(c)) > eps && i < maxiter) {
         if (signchange(f, a, c)) {
             b = c;
         } else {
@@ -43,6 +41,20 @@ std::vector<double> bisectionrootfindall(std::function<double(double)> f,
         double a, double b, int subintervals, double eps, int maxiter, 
         int minroots) {
 
-    return std::vector<double>();
+    std::vector<double> roots;
+    double h = (b - a)/subintervals;
+    
+    for (int i = 0; i < subintervals; i++) {
+        double root = bisectionrootfind(f, a + i*h, a + (i + 1)*h, eps, maxiter);
+        if (root != 0.0) {
+            roots.push_back(root);
+        }
+    }
+
+    if (roots.size() < minroots) {
+        std::cout << "Warning: only " << roots.size() << " roots found.\n";
+    }
+
+    return roots;
 }
 

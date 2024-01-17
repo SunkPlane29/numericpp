@@ -6,8 +6,8 @@
 
 long min(long a, long b) {return a < b ? a : b;}
 
-long bin(int n, int k) {
-    long C[k + 1];
+unsigned long bin(int n, int k) {
+    unsigned long C[k + 1];
     memset(C, 0, sizeof(C));
  
     C[0] = 1; // nC0 is 1
@@ -63,6 +63,12 @@ std::vector<double> linspace(double a, double b, int n) {
     }
     return x;
 }
+
+// ----------------------------
+//
+// OPERATOR OVERLOADING CODE
+//
+// ----------------------------
 
 std::vector<double> operator%(std::function<double(double)> f, std::vector<double> x) {
     std::vector<double> y(x.size());
