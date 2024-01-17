@@ -1,4 +1,7 @@
-#include "gquad.h"
+/*
+This may look like an important executable file but it's mostly a test file
+*/
+#include "numericpp.h"
 
 #include <iostream>
 #include <vector>
