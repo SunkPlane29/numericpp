@@ -5,6 +5,9 @@
 #include <iostream>
 #include <cmath>
 
+//NOTE: there is a better way to do this sort of thing
+const double noroot = 0.424242;
+
 bool signchange(std::function<double(double)> f, double a, double b) {
     if (f(a)*f(b) < 0.0) {
         return true;
@@ -17,8 +20,8 @@ double bisectionrootfind(std::function<double(double)> f, double a, double b,
         double eps, int maxiter) {
 
     if (!signchange(f, a, b)) {
-        std::cout << "No sign change in interval [" << a << ", " << b << "]\n";
-        return 0.0;
+        //std::cout << "No sign change in interval [" << a << ", " << b << "]\n";
+        return noroot;
     }
 
     double c = (a + b)/2.0;
@@ -46,7 +49,7 @@ std::vector<double> bisectionrootfindall(std::function<double(double)> f,
     
     for (int i = 0; i < subintervals; i++) {
         double root = bisectionrootfind(f, a + i*h, a + (i + 1)*h, eps, maxiter);
-        if (root != 0.0) {
+        if (root != noroot) {
             roots.push_back(root);
         }
     }

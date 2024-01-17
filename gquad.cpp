@@ -81,7 +81,8 @@ std::function<double(double)> LegendrePolyn(int n) {
 std::vector<double> getpoints(int n) {
     auto f = LegendrePolyn(n);
     double a = -1.0; double b = 1.0;
-    int subintervals = n;
+    //TODO: was supposed to be n, but had to make a hack to make it work
+    int subintervals = 5*n;
     int minroots = n;
     
     std::vector<double> roots = bisectionrootfindall(f, a, b, subintervals, 
