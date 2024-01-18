@@ -8,12 +8,11 @@ This may look like an important executable file but it's mostly a test file
 #include <cmath>
 
 int main() {
-    //NOTE: overflow for n > 32
-    //NOTE:  code not running or taking too much to run for n > 26
-    int n = 26;
-    auto f = [](double x) {return pow(x, 3.0);};
-    double a = 0.0;
-    double b = 1.0;
+    int m = 2;
+    int n = 2;
+    double x0 = 1.0;
 
-    std::cout << "Integral value: " << gquad(f, a, b, n) << '\n';
+    auto f = [](double x){return 3*pow(x, 3.0);}; 
+
+    std::cout << finitediff(f, x0, m, 2) << std::endl;
 }

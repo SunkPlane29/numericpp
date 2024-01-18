@@ -40,4 +40,8 @@ std::vector<double> bisectionrootfindall(std::function<double(double)>, double, 
 
 double gquad(std::function<double(double)>, double, double, int);
 
+// finitediff_h
+
+double finitediff(std::function<double(double)>, double, int, int);
+
 #endif
