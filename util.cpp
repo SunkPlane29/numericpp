@@ -87,6 +87,12 @@ std::vector<double> operator%(std::function<double(double)> f, std::vector<doubl
     return y;
 }
 
+std::vector<double> operator&&(std::vector<double> x, std::vector<double> y) {
+    std::vector<double> z(x.begin(), x.end());
+    z.insert(z.end(), y.begin(), y.end());
+    return z;
+}
+
 std::vector<double> operator*(std::vector<double> x, std::vector<double> y) {
     std::vector<double> z(x.size());
     for (int i = 0; i < x.size(); i++) {
