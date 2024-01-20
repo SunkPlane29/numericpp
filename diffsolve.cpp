@@ -18,6 +18,10 @@ std::vector<double> nextpoint(DiffEqSystem f, std::vector<double> point, double 
     return std::vector<double>({tempt+h})&&(tempx + ((h/6.0)*(kn1 + (2.0*kn2) + (2.0*kn3) + kn4)));
 }
 
+std::vector<double> newxn(std::vector<double> xn, double h) {
+    return std::vector<double>({xn[0] + h})&&(std::vector<double>(xn.begin() + 1, xn.end()));
+}
+
 // solvesystem solves a system of differential equations using the Runge-Kutta 4th order method
 // (RK4) and returns a vector of vectors (matrix) of the solution. The RK4 method is better at
 // nonlinear systems compared to the Euler (or Newton) method, that would highly depend of the
@@ -33,9 +37,10 @@ std::vector<std::vector<double>> solvesystem(DiffEqSystem f,
     std::vector<double> xn = start;
     int i = 1;
 
-    while (condition(xn, i)) {
+    while (condition(newxn(xn, h), i)) {
         xn = nextpoint(f, xn, h);
         solution.push_back(xn);
+
         i++;
     }
 

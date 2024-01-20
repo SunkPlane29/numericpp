@@ -8,6 +8,6 @@ build-main: build-lib
 
 .PHONY: build-lib
 build-lib:
-	g++ -c gquad.cpp root.cpp util.cpp finitediff.cpp
-	ar rcs numericpp.a gquad.o root.o util.o finitediff.o
+	g++ -c gquad.cpp root.cpp util.cpp finitediff.cpp diffsolve.cpp
+	ar rcs numericpp.a gquad.o root.o util.o finitediff.o diffsolve.o
 	rm *.o

@@ -73,6 +73,24 @@ std::vector<double> linspace(double a, double b, int n) {
     return x;
 }
 
+std::vector<double> getcol(std::vector<std::vector<double>> data, int col) {
+    std::vector<double> x(data.size());
+    for (int i = 0; i < data.size(); i++) {
+        x[i] = data[i][col];
+    }
+    return x;
+}
+
+std::vector<std::vector<double>> transpose(std::vector<std::vector<double>> data) {
+    std::vector<std::vector<double>> x(data[0].size(), std::vector<double>(data.size()));
+    for (int i = 0; i < data.size(); i++) {
+        for (int j = 0; j < data[0].size(); j++) {
+            x[j][i] = data[i][j];
+        }
+    }
+    return x;
+}
+
 // ----------------------------
 //
 // OPERATOR OVERLOADING CODE
