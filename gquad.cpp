@@ -108,6 +108,7 @@ double quadsum(std::function<double(double)> f, std::vector<double> points,
 
 // gquad return the value of the integral of the function f, integrated in the interval
 // [a, b] using the Gauss-Legendre quadrature of order n
+// NOTE: as of now this code only works for n <= 26
 double gquad(std::function<double(double)> f, double a, double b, int n) {
     std::vector<double> points = getpoints(n);
     std::vector<double> weights = getweights(points, n);
